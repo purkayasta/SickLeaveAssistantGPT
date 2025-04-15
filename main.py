@@ -51,40 +51,39 @@ def mix_date(fromdate: str, todate: str) -> str:
 
 
 def run_user_prompt():
-    while True:
-        user_name_input = input(">>Name:: ")
+    user_name_input = input(">>Name:: ")
 
-        if check_for_exit(user_name_input):
-            break
+    if check_for_exit(user_name_input):
+        return
 
-        user_date = input(">>Date: Example: (dd/mm/yyyy 01.01.2025):: ")
+    user_date = input(">>Date: Example: (dd.mm.yyyy 01.01.2025):: ")
 
-        if check_for_exit(user_date):
-            break
+    if check_for_exit(user_date):
+        return
 
-        if not date_validator(user_date):
-            print("Invalid Date Format!. ‼️")
-            continue
+    if not date_validator(user_date):
+        print("Invalid Date Format!. ‼️")
+        return
 
-        user_language = input(">>(en/bn):: ")
+    user_language = input(">>(en/bn):: ")
 
-        if check_for_exit(user_language):
-            break
+    if check_for_exit(user_language):
+        return
 
-        if not language_validator(user_language):
-            print("Invalid Language Selection!")
-            continue
+    if not language_validator(user_language):
+        print("Invalid Language Selection!")
+        return
 
-        date_obj = datetime.strptime(user_date, "%d.%m.%Y")
-        formatted_date = date_obj.strftime("%B %d, %Y")
-        try:
-            run_with_agent(
-                f"write me a leave application in {get_language_str(user_language)} language",
-                user_name_input,
-                formatted_date,
-            )
-        except Exception as e:
-            print(e)
+    date_obj = datetime.strptime(user_date, "%d.%m.%Y")
+    formatted_date = date_obj.strftime("%B %d, %Y")
+    try:
+        run_with_agent(
+            f"write me a leave application in {get_language_str(user_language)} language",
+            user_name_input,
+            formatted_date,
+        )
+    except Exception as e:
+        print(e)
 
 
 welcome_banner()

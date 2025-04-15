@@ -2,6 +2,8 @@
 
 Just wanted to try out how to make a sick leave application gpt using local data set.
 
+## Demo
+![](demo.gif)
 
 ## Tool Used:
     - Ollama
